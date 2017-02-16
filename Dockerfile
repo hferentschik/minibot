@@ -18,7 +18,8 @@ RUN npm install hubot coffee-script redis irc && \
     npm install hubot-standup --save && \
     npm install hubot-auth --save && \
     npm install nodepie underscore xml2js cron emailjs sugar --save && \
-    npm install generator-hubot
+    npm install generator-hubot && \
+    npm install githubot
 
 # Create Hubot
 RUN ~/.npm/bin/yo hubot --owner="Minishift Team" --name="Minibot" --description="Minishift IRC Hubot" --defaults

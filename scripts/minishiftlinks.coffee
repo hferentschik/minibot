@@ -14,11 +14,17 @@
 #
 
 module.exports = (robot) ->
+  github = require('githubot')(robot)
 
   regex = /(?:^|\s)#(\d+)\b/i
 
   robot.hear regex, (res) ->
-    # return if msg.subtype is 'bot_message'
-    issue = res.match[1]
-    url = 'https://github.com/minishift/minishift/issues/' + issue
-    res.send url
+    id = res.match[1]
+
+
+    github.get "repos/minishift/minishift/issues/" + id, (issue) ->
+      out = ""
+      if /pull/.test(issue.html_url)
+      	out = out + "PR - "
+      out = out + issue.title + ' (' + issue.state  + ') - ' + issue.html_url
+      res.send out
