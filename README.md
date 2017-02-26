@@ -23,12 +23,12 @@ Dockerfile for [Hubot](https://hubot.github.com) using irc adapter. Used for #mi
 #### Build
 
 ```
-$ docker build -t hferentschik/hubot .
+$ docker build -t minishift/minibot .
 ```
 
 <a name="run"></a>
 #### Run
 
 ```
-$ docker run -e HUBOT_AUTH_ADMIN=<comma seperated nics> -e HUBOT_IRC_PASSWORD=<password> -e ENV REDISTOGO_URL=<redis-url> -t hferentschik/hubot
+$ docker run -rm -e HUBOT_AUTH_ADMIN=<comma seperated nics> -e HUBOT_IRC_PASSWORD=<password> -e REDISTOGO_URL=<redis-url> -t minishift/minibot
 ```

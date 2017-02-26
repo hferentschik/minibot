@@ -13,9 +13,6 @@
 #
 # Notes:
 #   None
-#
-# Author:
-#   Brad Clark <bdashrad@gmail.com>
 
 module.exports = (robot) ->
 
@@ -37,9 +34,16 @@ module.exports = (robot) ->
       ///i
 
   robot.hear regex, (res) ->
-    # return if msg.subtype is 'bot_message'
     project = res.match[1].toUpperCase()
     id = res.match[2]
     issue = project + '-' + id
-    url = 'https://' + process.env.HUBOT_JIRA_DOMAIN + '/browse/' + issue
-    res.send url
+    url = 'https://' + process.env.HUBOT_JIRA_DOMAIN + '/rest/api/2/search?jql=project=' + project + '%20AND%20key=' + issue
+    res.http(url)
+      .header('Accept', 'application/json')
+      .get() (err, httpRes, body) ->
+        data = JSON.parse body
+        try
+          res.send "#{data.issues[0].fields.summary} (#{data.issues[0].fields.status.name}) -  https://#{process.env.HUBOT_JIRA_DOMAIN}/browse/#{issue}"
+        catch error
+          res.send "Unknown CDK issue #{issue}"
+
