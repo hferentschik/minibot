@@ -14,12 +14,22 @@ RUN echo "prefix = /home/hubot/.npm" > /home/hubot/.npmrc
 
 # Install npm packages
 RUN npm install -g yo
-RUN npm install hubot coffee-script redis irc && \
-    npm install hubot-standup --save && \
-    npm install hubot-auth --save && \
-    npm install nodepie underscore xml2js cron emailjs sugar --save && \
+RUN npm install hubot && \
+    npm install coffee-script && \
+    npm install redis && \
+    npm install irc && \
+    npm install hubot-standup && \
+    npm install hubot-auth && \
+    npm install nodepie && \
+    npm install underscore && \
+    npm install xml2js && \
+    npm install cron && \
+    npm install emailjs && \
+    npm install sugar && \
     npm install generator-hubot && \
-    npm install githubot
+    npm install githubot && \
+    npm install url && \
+    npm install querystring
 
 # Create Hubot
 RUN ~/.npm/bin/yo hubot --owner="Minishift Team" --name="Minibot" --description="Minishift IRC Hubot" --defaults
