@@ -40,7 +40,7 @@ $ docker run -rm -p 9009:9009 -e HUBOT_AUTH_ADMIN=<comma seperated nics> -e HUBO
 
 To develop locally you can let the bot connect to a test room:
 
-    $ docker run --rm -p 9009:9009 -e HUBOT_IRC_ROOMS=#foo HUBOT_AUTH_ADMIN=<comma seperated nics> -e HUBOT_IRC_PASSWORD=<password> -e REDISTOGO_URL=<redis-url> -t minishift/minibot
+    $ docker run --rm -p 9009:9009 -e HUBOT_IRC_ROOMS=#foo -e HUBOT_AUTH_ADMIN=<comma seperated nics> -e HUBOT_IRC_PASSWORD=<password> -e REDISTOGO_URL=<redis-url> -t minishift/minibot
 
 
 <a name="testing-webhooks"></a>
