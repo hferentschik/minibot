@@ -10,6 +10,8 @@
 # Notes:
 #   None
 
+debug = false
+
 module.exports = (robot) ->
 
   regex = /cdk-\d+/ig
@@ -21,8 +23,10 @@ module.exports = (robot) ->
         .header('Accept', 'application/json')
         .get() (err, httpRes, body) ->
           data = JSON.parse body
+          if (debug)
+            robot.logger.info("Payload: ", data)
           try
-            res.send "CDK - #{data.issues[0].fields.summary} (#{data.issues[0].fields.status.name}) -  https://issues.jboss.org/browse/#{issue}"
+            res.send "CDK - #{data.issues[0].fields.summary} (#{data.issues[0].fields.status.name}) -  https://issues.jboss.org/browse/#{data.issues[0].key}"
           catch error
-            res.send "Unknown CDK issue #{issue}"
+            res.send "#{data.errorMessages[0]}"
 
