@@ -29,7 +29,9 @@ RUN npm install hubot && \
     npm install generator-hubot && \
     npm install githubot && \
     npm install url && \
-    npm install querystring
+    npm install querystring && \
+    npm install csv-parse && \
+    npm install pad
 
 # Create Hubot
 RUN ~/.npm/bin/yo hubot --owner="Minishift Team" --name="Minibot" --description="Minishift IRC Hubot" --defaults
