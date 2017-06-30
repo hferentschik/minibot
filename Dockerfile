@@ -20,6 +20,7 @@ RUN npm install hubot && \
     npm install irc && \
     npm install hubot-standup && \
     npm install hubot-auth && \
+    npm install hubot-timezone && \
     npm install nodepie && \
     npm install underscore && \
     npm install xml2js && \
