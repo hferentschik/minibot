@@ -1,6 +1,7 @@
 FROM node:7.5.0
 
 LABEL maintainer "Minishift Team"
+ENV REFRESHED_AT 2017-07-08
 
 # Install gobal packages
 RUN apt-get update && apt-get install -y libicu-dev
@@ -21,6 +22,7 @@ RUN npm install hubot && \
     npm install hubot-standup && \
     npm install hubot-auth && \
     npm install hubot-timezone && \
+    npm install hubot-good-karma && \
     npm install nodepie && \
     npm install underscore && \
     npm install xml2js && \
@@ -32,7 +34,9 @@ RUN npm install hubot && \
     npm install url && \
     npm install querystring && \
     npm install csv-parse && \
-    npm install pad
+    npm install pad && \
+    npm install starwars && \
+    npm install html-entities
 
 # Create Hubot
 RUN ~/.npm/bin/yo hubot --owner="Minishift Team" --name="Minibot" --description="Minishift IRC Hubot" --defaults

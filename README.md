@@ -6,13 +6,14 @@ Minibot is a IRC bot employed by the [Minishift team](https://github.com/orgs/mi
 <!-- MarkdownTOC -->
 
 - [Usage](#usage)
-	- [Minishift stand-ups](#minishift-stand-ups)
-	- [Sprint backlog](#sprint-backlog)
-	- [CI notifications](#ci-notifications)
+    - [Minishift stand-ups](#minishift-stand-ups)
+    - [Sprint backlog](#sprint-backlog)
+    - [CI notifications](#ci-notifications)
+    - [Misc](#misc)
 - [Developing](#developing)
-	- [Building the image](#building-the-image)
-	- [Running the image](#running-the-image)
-	- [Testing webhooks](#testing-webhooks)
+    - [Building the Minibot image](#building-the-minibot-image)
+    - [Running the Minibot image](#running-the-minibot-image)
+    - [Testing webhooks](#testing-webhooks)
 - [Resources](#resources)
 
 <!-- /MarkdownTOC -->
@@ -62,19 +63,27 @@ Once uploaded the backlog can be printed via the Minibot command:
 <a name="ci-notifications"></a>
 ### CI notifications
 
-At the moment only one of the used CI build servers used by the Minishift sends notifications to Minibot, namely [Travis CI](https://travis-ci.org/minishift/minishift).
-The required webhook is configured [here](https://github.com/minishift/minishift/blob/master/.travis.yml).
+At the moment only [Travis CI](https://travis-ci.org/minishift/minishift) and [AppVeyor](https://www.appveyor.com) send notifications to Minibot.
+The required webhooks are configured in [.travis.yml](https://github.com/minishift/minishift/blob/master/.travis.yml) resp. [appveyor.yml](https://github.com/minishift/minishift/blob/master/appveyor.yml) in the Minishift [repository](https://github.com/minishift/minishift).
+
+<a name="misc"></a>
+### Misc
+
+Other than that the following hubot scripts are installed:
+
+* [hubot-timezone](https://github.com/ryandao/hubot-timezone)
+* [hubot-good-karma](https://www.npmjs.com/package/hubot-good-karma)
 
 <a name="developing"></a>
 ## Developing
 
-<a name="building-the-image"></a>
-### Building the image
+<a name="building-the-minibot-image"></a>
+### Building the Minibot image
 
     $ docker build -t minishift/minibot .
 
-<a name="running-the-image"></a>
-### Running the image
+<a name="running-the-minibot-image"></a>
+### Running the Minibot image
 
     $ docker run -rm -p 9009:9009 \
     -e HUBOT_AUTH_ADMIN=<comma seperated nics> \
@@ -89,15 +98,17 @@ To develop locally you can let the bot connect to a test room:
 <a name="testing-webhooks"></a>
 ### Testing webhooks
 
-To test a webhook, execute the following against your local instance of the bot:
+The [testdata](https://github.com/minishift/minibot/tree/master/testdata) directory contains some sample JSON payload files to test the Minibot webhook integration.
+To test a webhook, execute the following against your local instance of Minibot:
 
-    $ curl http://<ip>:9009/hubot/<hook> --data-urlencode payload@<file>
+    $ cd testdata
+    $ curl http://<IP>:9009/hubot/travis_ci --data-urlencode payload@travis_ci.json
+    # or
+    $ curl http://<IP>:9009/hubot/appveyor -H "Content-Type: application/json" -d  @appveyor.json
 
 where:
 
-* \<ip\> is the IP of your Docker daemon
-* \<hook\> is the defined webhook endpoint
-* \<file\> is the filename of the file containing the JSON payload
+* \<IP\> is the IP of your Docker daemon
 
 <a name="resources"></a>
 ## Resources

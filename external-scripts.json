@@ -5,5 +5,6 @@
   "hubot-rules",
   "hubot-standup",
   "hubot-auth",
-  "hubot-timezone"
+  "hubot-timezone",
+  "hubot-good-karma"
 ]
