@@ -47,6 +47,7 @@ module.exports = (robot) ->
       #  robot.messageRoom process.env.HUBOT_IRC_ROOMS, "#{artifact.url}"
 
     robot.messageRoom process.env.HUBOT_IRC_ROOMS, starwars()
+    robot.messageRoom process.env.HUBOT_IRC_ROOMS, " "
 
 String::startsWith ?= (s) -> @slice(0, s.length) == s
 String::endsWith ?= (s) -> s == '' or @slice(-s.length) == s

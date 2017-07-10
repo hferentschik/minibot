@@ -71,3 +71,4 @@ module.exports = (robot) ->
             robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Achievement unlocked: Chuck Norris is quiet!"
           else
             robot.messageRoom process.env.HUBOT_IRC_ROOMS, entities.decode(message_from_chuck.value.joke.replace /\s\s/g, " ")
+        robot.messageRoom process.env.HUBOT_IRC_ROOMS, " "
