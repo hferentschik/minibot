@@ -25,10 +25,9 @@
       "committerEmail":"john@smith.com",
       "isPullRequest":false,
       "pullRequestId":1,
-      "buildUrl":"https://ci.appveyor.com/project/JohnSmith/test-web/build/1.0.26",
+      "buildUrl":"https://ci.appveyor.com/project/minishift-bot/minishift/build/26",
       "notificationSettingsUrl":"https://ci.appveyor.com/notifications",
       "messages":[
-
       ],
       "jobs":[
          {
