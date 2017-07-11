@@ -36,7 +36,8 @@ RUN npm install hubot && \
     npm install csv-parse && \
     npm install pad && \
     npm install starwars && \
-    npm install html-entities
+    npm install html-entities && \
+    npm install get-hrefs
 
 # Create Hubot
 RUN ~/.npm/bin/yo hubot --owner="Minishift Team" --name="Minibot" --description="Minishift IRC Hubot" --defaults

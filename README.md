@@ -8,6 +8,7 @@ Minibot is a IRC bot employed by the [Minishift team](https://github.com/orgs/mi
 - [Usage](#usage)
     - [Minishift stand-ups](#minishift-stand-ups)
     - [Sprint backlog](#sprint-backlog)
+    - [CentOS CI](#centos-ci)
     - [CI notifications](#ci-notifications)
     - [Misc](#misc)
 - [Developing](#developing)
@@ -59,6 +60,13 @@ Once uploaded the backlog can be printed via the Minibot command:
  To see which sprints Minibot knows about:
 
     minibot list known sprints
+
+<a name="centos-ci"></a>
+### CentOS CI
+
+You can ask for pull request artifacts from a CentOS CI pull request build by:
+
+    minibot artifacts for pr <pr-id>
 
 <a name="ci-notifications"></a>
 ### CI notifications
