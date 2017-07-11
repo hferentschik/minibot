@@ -77,23 +77,17 @@ Other than that the following hubot scripts are installed:
 <a name="developing"></a>
 ## Developing
 
+In order to develop on Minibot you need to set the environment variables `MINIBOT_REDIS_URL` and `MINIBOT_IRC_PASS`.
+
 <a name="building-the-minibot-image"></a>
 ### Building the Minibot image
 
-    $ docker build -t minishift/minibot .
+    $ make build
 
 <a name="running-the-minibot-image"></a>
 ### Running the Minibot image
 
-    $ docker run -rm -p 9009:9009 \
-    -e HUBOT_AUTH_ADMIN=<comma seperated nics> \
-    -e HUBOT_IRC_PASSWORD=<password> \
-    -e REDISTOGO_URL=<redis-url> \
-    -t minishift/minibot
-
-To develop locally you can let the bot connect to a test room:
-
-    $ docker run --rm -p 9009:9009 -e HUBOT_IRC_ROOMS=#foo -e HUBOT_AUTH_ADMIN=<comma separated nics> -e HUBOT_IRC_PASSWORD=<password> -e REDISTOGO_URL=<redis-url> -t minishift/minibot
+    $ make run
 
 <a name="testing-webhooks"></a>
 ### Testing webhooks
