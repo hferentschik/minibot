@@ -37,21 +37,19 @@ module.exports = (robot) ->
     if (data.type == "push")
       switch data.status_message
         when "Passed"
-          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Travis CI reports another successful master build"
+          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Travis CI reports another successful master build - #{data.build_url}"
         when "Fixed"
-          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Relax, Travis CI reports, master build is working again"
+          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Relax, Travis CI reports, master build is working again - #{data.build_url}"
         when "Broken", "Failing", "Still Failing"
-          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "All hands on deck, Travis CI reports a broken master build"
+          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "All hands on deck, Travis CI reports a broken master build - #{data.build_url}"
         else robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Unhandled build status message: #{data.status_message}"
-      robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Commit message: #{data.message}"
-      robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Build URL: #{data.build_url}"
-      robot.messageRoom process.env.HUBOT_IRC_ROOMS, " "
+      robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Commit by #{data.author_name}: #{data.message}"
       return
 
     if (data.type == "pull_request")
       switch data.status_message
         when "Passed", "Fixed"
-          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Travis CI reports, pull request ##{data.pull_request_number} completed successully"
+          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Travis CI reports, pull request https://github.com/minishift/minishift/pull/#{data.pull_request_number} completed successully"
         when "Broken", "Failing", "Still Failing"
-          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Travis CI reports, pull request ##{data.pull_request_number} is broken"
+          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Travis CI reports, pull request https://github.com/minishift/minishift/pull/#{data.pull_request_number} is broken"
         else robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Unhandled build status message: #{data.status_message}"

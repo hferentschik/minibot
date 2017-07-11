@@ -23,7 +23,7 @@
       "commitMessage":"Some changes to appveyor.yml",
       "committerName":"John Smith",
       "committerEmail":"john@smith.com",
-      "isPullRequest":true,
+      "isPullRequest":false,
       "pullRequestId":1,
       "buildUrl":"https://ci.appveyor.com/project/minishift-bot/minishift/build/26",
       "notificationSettingsUrl":"https://ci.appveyor.com/notifications",

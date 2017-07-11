@@ -14,7 +14,7 @@
    "committer_email":"svenfuchs@artweb-design.de",
    "author_name":"Sven Fuchs",
    "author_email":"svenfuchs@artweb-design.de",
-   "type":"pull_request",
+   "type":"push",
    "pull_request_number":"200",
    "build_url":"https://travis-ci.org/svenfuchs/minimal/builds/1",
    "repository":{
