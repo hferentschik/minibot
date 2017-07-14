@@ -30,7 +30,7 @@ module.exports = (robot) ->
         robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Circle CI reports, pull request build https://github.com/minishift/minishift/#{payload.branch} failed"
     else
       if payload.status is 'success'
-        robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Circle CI reports, another successful master build: #{payload.build_url}. Commit by #{payload.committer_name}: #{payload.message}"
+        robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Circle CI reports, another successful master build: #{payload.build_url}. Commit by #{payload.committer_name}: #{payload.subject}"
       else
         robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Code one emergency, Circle CI reports broken master build: #{payload.build_url} Commit by #{payload.committer_name}: #{payload.subject}"
 
