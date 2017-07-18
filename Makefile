@@ -1,9 +1,12 @@
-MINBOT_IMAGE_NAME ?= minishift-bot/minibot
+MINIBOT_IMAGE_NAME ?= minishift-bot/minibot
 MINIBOT_VERSION = 1.0.1
 
 # Variables needed to run Minibot
 MINIBOT_IRC_TEST_CHANNEL ?= "\#minishift-test"
 MINIBOT_ADMINS ?= hardy
+
+# Optional
+MINIBOT_OPTS=-e MINIBOT_LOG_WEBHOOKS=true
 
 # Check that given variables are set and all have non-empty values,
 # die with an error otherwise.
@@ -19,18 +22,23 @@ __check_defined = \
       $(error Undefined $1$(if $2, ($2))))
 
 build:
-	docker build -t $(MINBOT_IMAGE_NAME) .
+	docker build -t $(MINIBOT_IMAGE_NAME) .
 
 run: build
 	@:$(call check_defined, MINIBOT_REDIS_URL, "The build requires REDIS_URL to be set")
 	@:$(call check_defined, MINIBOT_IRC_PASS, "The build requires MINIBOT_IRC_PASS to be set")
-	docker run --rm -p 9009:9009 -e HUBOT_IRC_ROOMS=$(MINIBOT_IRC_TEST_CHANNEL) -e HUBOT_AUTH_ADMIN=$(MINIBOT_ADMINS) -e HUBOT_IRC_PASSWORD=$(MINIBOT_IRC_PASS) -e REDISTOGO_URL=$(MINIBOT_REDIS_URL) -t $(MINBOT_IMAGE_NAME)
+	docker run --rm -p 9009:9009 -e HUBOT_IRC_ROOMS=$(MINIBOT_IRC_TEST_CHANNEL) \
+	-e HUBOT_AUTH_ADMIN=$(MINIBOT_ADMINS) \
+	-e HUBOT_IRC_PASSWORD=$(MINIBOT_IRC_PASS) \
+	-e REDISTOGO_URL=$(MINIBOT_REDIS_URL) \
+	$(MINIBOT_OPTS) \
+	-t $(MINIBOT_IMAGE_NAME)
 
 clean:
 	docker stop $(shell docker ps -a -q) && docker rm $(shell docker ps -a -q)
 
 tag: build
-	docker tag $(MINBOT_IMAGE_NAME) $(MINBOT_IMAGE_NAME):$(MINIBOT_VERSION)
+	docker tag $(MINIBOT_IMAGE_NAME) $(MINIBOT_IMAGE_NAME):$(MINIBOT_VERSION)
 
 push: tag
-	docker push $(MINBOT_IMAGE_NAME)
+	docker push $(MINIBOT_IMAGE_NAME)

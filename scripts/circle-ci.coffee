@@ -1,15 +1,14 @@
 # Description:
 #   Listens for event notifications from the ci-webhook listeners and handles Travis CI notifications
-url           = require('url')
-
-debug = false
+url = require('url')
+common = require("./common.coffee")
 
 module.exports = (robot) ->
 
   robot.router.post "/hubot/circleci", (req, res) ->
     try
-      if (debug)
-        robot.logger.info("Webhook received: ", req)
+      if (common.logWebHooks())
+        robot.logger.info("Circle CI webhook received: ", req.body.payload)
 
       robot.emit "circle-ci-event", req.body.payload
     catch error

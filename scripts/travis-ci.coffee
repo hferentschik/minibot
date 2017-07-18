@@ -3,22 +3,18 @@
 
 url           = require('url')
 querystring   = require('querystring')
-
-debug = false
+common        = require("./common.coffee")
 
 module.exports = (robot) ->
 
   robot.router.post "/hubot/travis-ci", (req, res) ->
     try
-      if (debug)
-        robot.logger.info("Webhook received: ", req)
-
       data =
         payload     : req.body.payload
         query       : querystring.parse(url.parse(req.url).query)
 
-      if (debug)
-        robot.logger.info("Payload: ", data.payload)
+      if (common.logWebHooks())
+        robot.logger.info("Travis CI webhook received: ", JSON.parse data.payload)
       robot.emit "travis-ci-event", data
     catch error
       robot.logger.error "Webhook listener error: #{error.stack}. Request: #{req.body}"

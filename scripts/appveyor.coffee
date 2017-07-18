@@ -4,15 +4,14 @@
 url           = require('url')
 querystring   = require('querystring')
 starwars      = require('starwars')
-
-debug = false
+common        = require("./common.coffee")
 
 module.exports = (robot) ->
 
   robot.router.post "/hubot/appveyor", (req, res) ->
     try
-      if (debug)
-        robot.logger.info("Webhook received: ", req)
+      if (common.logWebHooks())
+        robot.logger.info("Appveyor webhook received: ", req.body)
 
       robot.emit "appveyor-event", req.body
     catch error
@@ -41,6 +40,3 @@ module.exports = (robot) ->
       #robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Build artifacts:"
       #for artifact, index in notification.eventData.jobs[0].artifacts
       #  robot.messageRoom process.env.HUBOT_IRC_ROOMS, "#{artifact.url}"
-
-String::startsWith ?= (s) -> @slice(0, s.length) == s
-String::endsWith ?= (s) -> s == '' or @slice(-s.length) == s
