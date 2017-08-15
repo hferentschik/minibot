@@ -1,5 +1,5 @@
 MINIBOT_IMAGE_NAME ?= minishift-bot/minibot
-MINIBOT_VERSION = 1.0.2
+MINIBOT_VERSION = 1.1.0
 
 # Variables needed to run Minibot
 MINIBOT_IRC_TEST_CHANNEL ?= "\#minishift-test"
