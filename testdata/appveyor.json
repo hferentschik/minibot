@@ -1,8 +1,8 @@
 {
    "eventName":"build_success",
    "eventData":{
-      "passed":true,
-      "failed":false,
+      "passed":false,
+      "failed":true,
       "status":"Success",
       "started":"2014-04-14 7:57 PM",
       "finished":"2014-04-14 7:58 PM",
@@ -23,7 +23,7 @@
       "commitMessage":"Some changes to appveyor.yml",
       "committerName":"John Smith",
       "committerEmail":"john@smith.com",
-      "isPullRequest":false,
+      "isPullRequest":true,
       "pullRequestId":1,
       "buildUrl":"https://ci.appveyor.com/project/minishift-bot/minishift/build/26",
       "notificationSettingsUrl":"https://ci.appveyor.com/notifications",

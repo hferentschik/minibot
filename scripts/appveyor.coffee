@@ -31,12 +31,9 @@ module.exports = (robot) ->
         robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Red alert, Appveyor reports a failed master build: #{notification.eventData.buildUrl}.
           Commit by #{notification.eventData.commitAuthor}: #{notification.eventData.commitMessage}"
     else
-      if (notification.eventData.isPullRequest is true)
-        robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Appveyor reports, pull request build https://github.com/#{notification.eventData.repositoryName}/pull/#{notification.eventData.pullRequestId} succeeded"
-      else
-        robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Appveyor reports another successful master build: #{notification.eventData.buildUrl}.
-          Commit by #{notification.eventData.commitAuthor}: #{notification.eventData.commitMessage}"
-
-      #robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Build artifacts:"
-      #for artifact, index in notification.eventData.jobs[0].artifacts
-      #  robot.messageRoom process.env.HUBOT_IRC_ROOMS, "#{artifact.url}"
+      if (common.notifyOnSuccess())
+        if (notification.eventData.isPullRequest is true)
+          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Appveyor reports, pull request build https://github.com/#{notification.eventData.repositoryName}/pull/#{notification.eventData.pullRequestId} succeeded"
+        else
+          robot.messageRoom process.env.HUBOT_IRC_ROOMS, "Appveyor reports another successful master build: #{notification.eventData.buildUrl}.
+            Commit by #{notification.eventData.commitAuthor}: #{notification.eventData.commitMessage}"
