@@ -63,7 +63,11 @@ Once uploaded the backlog can be printed via the Minibot command:
 <a name="centos-ci"></a>
 ### CentOS CI
 
-You can ask for pull request artifacts from a CentOS CI pull request build by:
+You can ask for the latest master build artifacts built by CentOS CI:
+
+    minibot latest master artifacts
+
+Or you can ask for pull request artifacts:
 
     minibot artifacts for pr <pr-id>
 
@@ -112,6 +116,10 @@ To test a webhook, execute the following against your local instance of Minibot:
 where:
 
 * \<IP\> is the IP of your Docker daemon
+
+To test the CentOS CI release webhook, execute:
+
+    $ curl http://<IP>:9009/hubot/centosci -H "Content-Type: application/json" -d '{"payload":{"status":"success","message":"Minishift v1.0.0 successfully released by https://ci.centos.org/job/minishift-release/100","url":"https://github.com/minishift/minishift/releases/tag/v1.0.0"}}'
 
 <a name="resources"></a>
 ## Resources
