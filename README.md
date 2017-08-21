@@ -6,6 +6,7 @@ Minibot is a IRC bot employed by the [Minishift team](https://github.com/orgs/mi
 
 - [Usage](#usage)
     - [Minishift stand-ups](#minishift-stand-ups)
+    - [Archaeologist](#archaeologist)
     - [Sprint backlog](#sprint-backlog)
     - [CentOS CI](#centos-ci)
     - [CI notifications](#ci-notifications)
@@ -41,12 +42,41 @@ To list the roles of a user:
 
     minibot what roles does <user> have
 
+<a name="archaeologist"></a>
+### Archaeologist
+
+The archaeologist is a role within the Minishift time who has the task to groom long standing issues.
+The role rotates amongst the core devs of the Minishift team and usually is held for a week (number of days are configurable via `MINIBO_ARCHAEOLOGIST_DAYS`).
+Minibot offers several commands to aid keeping track of the current archaeologist.
+Per default the current archaeologist is called out after a [stand-up](#minishift-stand-ups).
+However, there are also several commands to explicitly manage the archaeologist role.
+
+Add a user to the list of archaeologists:
+
+    minibot <user> has an archaeologist member role
+
+To remove a user from the list of archaeologists:
+
+    minibot <user> doesn’t an archaeologist member role
+
+To print the current archaeologist:
+
+    minibot who is archaeologist
+
+To skip to the next archaeologist:
+
+    minibot archaeologist next
+
+For all supported commands
+
+    minibot archaeologist?
+
 <a name="sprint-backlog"></a>
 ### Sprint backlog
 
 Sprint backlogs in comma separated format can be added to Minibot brain via a webhook:
 
-    curl -X POST http://<IP>:9009/hubot/sprint -d sprint=134 -d data="$(cat sprint-134.csv)"
+    $ curl -X POST http://<IP>:9009/hubot/sprint -d sprint=134 -d data="$(cat sprint-134.csv)"
 
 Once uploaded the backlog can be printed via the Minibot command:
 

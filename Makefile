@@ -1,4 +1,4 @@
-MINIBOT_IMAGE_NAME ?= minishift-bot/minibot
+MINIBOT_IMAGE_NAME ?= minishift/minibot
 MINIBOT_VERSION = 1.1.0
 
 # Variables needed to run Minibot

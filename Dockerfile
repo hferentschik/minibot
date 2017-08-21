@@ -1,7 +1,7 @@
 FROM node:7.5.0
 
 LABEL maintainer "Minishift Team"
-ENV REFRESHED_AT 2017-07-08
+ENV REFRESHED_AT 2017-08-22
 
 # Install gobal packages
 RUN apt-get update && apt-get install -y libicu-dev
@@ -19,7 +19,6 @@ RUN npm install hubot && \
     npm install coffee-script && \
     npm install redis && \
     npm install irc && \
-    npm install hubot-standup && \
     npm install hubot-auth && \
     npm install hubot-timezone && \
     npm install hubot-good-karma && \
