@@ -12,7 +12,7 @@
 
 module.exports = (robot) ->
   robot.brain.on 'standupLog', (group, room, response, logs) ->
-    archaeologist(robot)
+    whoIsArchaeologist(robot)
 
   robot.respond /who are archaeologists *$/i, (msg) ->
     archaeologists = allArchaeologists(robot)
