@@ -48,7 +48,14 @@ module.exports = (robot) ->
         if issue[1] is "no"
           continue
 
-        msg.send("P(#{pad(2,index)}) E(#{pad(2, issue[2])}) C(#{pad(issue[0], 1, strip: true)}) - #{pad(issue[15], 8)} - #{issue[9]}")
+        # some column mappings due to changes in the number of columns
+        title_column_index = 9
+        key_column_index = 15
+        if parseInt( sprint_id, 10 ) > 135
+          title_column_index = 11
+          key_column_index = 17
+
+        msg.send("P(#{pad(2,index)}) E(#{pad(2, issue[2])}) C(#{pad(issue[0], 1, strip: true)}) - #{pad(issue[key_column_index], 8)} - #{issue[title_column_index]}")
     else
       msg.send("No sprint with id #{sprint_id} defined.")
 
@@ -69,7 +76,6 @@ module.exports = (robot) ->
   robot.respond /list known sprints *$/i, (msg) ->
     if robot.brain.data.sprint
       sprints = ""
-      robot.logger.info "#{robot.brain.data.sprint}"
       for key, value of robot.brain.data.sprint
         sprints = sprints + "#{key} "
       msg.send("I know about the sprint(s) #{sprints}")
